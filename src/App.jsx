@@ -34,6 +34,7 @@ function App() {
     });
   }
 
+  // await 을 사용하려면 반드시 async를 선언 해줘야함
   const handleSummarize = async () => {
     setLoading(true);
     setSummary("");
@@ -46,8 +47,17 @@ function App() {
      * 5. 결과 result 변수에 할당
      * 6. setSummary에 값 보여줌
      * 7. 로딩 종료
+     * 
+     * ## 이해도
+     - 전체 실행 흐름 요역
+      -> handleSummarize 실행
+      -> loading true;
+      -> await API 요청 (기다리는 동안 UI는 살아 있음)
+      -> 응답 도착
+      -> summary 업데이트
+      -> loading false;
      */
-    const result = await fakeSummarize(text);
+    const result = await fakeSummarize(text); // async 없으면 에러
 
     setSummary(result);
     setLoading(false);
