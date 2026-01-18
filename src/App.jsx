@@ -2,6 +2,7 @@ import { useState } from "react";
 import TextInput from "./TextInput";
 import Counter from "./Counter";
 import Summary from "./Summary";
+import { summarizeText } from "./api/summarize";
 
 function App() {
   /** 아래 변수 의미
