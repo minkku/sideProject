@@ -27,13 +27,13 @@ function App() {
    * Promise = 미래에 값이 도착할 것이라는 약속
    * resolve = 나중에 결과를 전달하는 함수
    */
-  function fakeSummarize(text) {
-    return new Promise((resolve) => {
-      setTimeout((reslove) => {
-        resolve(text.slice(0, 10) + "...");
-      }, 1000);
-    });
-  }
+  // function fakeSummarize(text) {
+  //   return new Promise((resolve) => {
+  //     setTimeout((reslove) => {
+  //       resolve(text.slice(0, 10) + "...");
+  //     }, 1000);
+  //   });
+  // }
 
   const handleSummarize = async () => {
     setLoading(true);
@@ -48,10 +48,19 @@ function App() {
      * 6. setSummary에 값 보여줌
      * 7. 로딩 종료
      */
-    const result = await fakeSummarize(text);
+    // const result = await fakeSummarize(text);
 
-    setSummary(result);
-    setLoading(false);
+    // setSummary(result);
+    // setLoading(false);
+
+    try {
+      const result = await summarizeText(text);
+      setSummary(result);
+    } catch (e) {
+      setSummary("요약 중 오류가 발생헸습니다.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
